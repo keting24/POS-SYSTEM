@@ -1,47 +1,52 @@
 RoeGuPOS - Point of Sale & Inventory System
 (C# WinForms, .NET Framework 4.8, SQL Server Express)
 
-CONTENTS
-  Program\    the application (RoeGuPOS.WinForms.exe and its files - keep them together)
-  Database\   RoeGuPOS.sql (the complete database: tables, procedures, sample data)
-  README.txt  this guide
+FILES IN THIS REPOSITORY
+  ROEGUS_POS.zip                 the application (.exe) - unzip it and run it
+  RoeGuPOS.zip                   the source code (Visual Studio solution)
+  RoeGusPOS_Full_Database.sql    the complete database (tables, procedures, sample data)
+  README.txt                     this guide
 
-REQUIREMENTS
+REQUIREMENTS (to run the .exe)
   - Windows 10 or 11
   - SQL Server Express (instance .\SQLEXPRESS)
-  - SQL Server Management Studio (SSMS)
+  - SQL Server Management Studio (SSMS), only once, to run the database file
+  Visual Studio is NOT needed to run the program. It is only needed to open the source code.
 
 HOW TO RUN THE APPLICATION
 
 Step 1 - Create the database
   1. Open SSMS. Server name: .\SQLEXPRESS   Authentication: Windows Authentication. Click Connect.
-  2. Click File > Open > File and choose Database\RoeGuPOS.sql.
-  3. Click Execute (or press F5).
-     Wait for "Commands completed successfully".
+  2. Click File > Open > File and choose RoeGusPOS_Full_Database.sql.
+  3. Click Execute (or press F5) and wait for "Commands completed successfully".
   4. In Object Explorer, right-click Databases > Refresh. "RoeGuPOS" should be listed.
      (If the script did not create it: right-click Databases > New Database, name it
-      RoeGuPOS, then open the script again, choose RoeGuPOS in the database
-      dropdown at the top, and Execute.)
+      RoeGuPOS, open the script again, choose RoeGuPOS in the database dropdown
+      at the top, and Execute.)
 
-Step 2 - Check the connection setting
-  1. Open Program\RoeGuPOS.WinForms.exe.config in Notepad.
-  2. Find:  Data Source=.\SQLEXPRESS
-     If your SQL Server has another name, change it, then save the file.
-
-Step 3 - Start the program
-  1. Unzip the submitted file first (right-click the zip > Extract All). Do not run
-     the program from inside the zip.
-  2. Open the extracted Program folder and find  RoeGuPOS.WinForms  (Type: Application).
+Step 2 - Start the program
+  1. Unzip ROEGUS_POS.zip first (right-click > Extract All). Do not run it from inside the zip.
+  2. Open the extracted folder and find  RoeGuPOS.WinForms  (Type: Application).
   3. Optional - make a desktop shortcut:
        right-click RoeGuPOS.WinForms > Show more options > Send to > Desktop (create shortcut)
-  4. Double-click RoeGuPOS.WinForms (or the shortcut on the desktop).
-  5. Log in with one of the accounts below.
-  (Keep the Program folder where it is. The shortcut only points to it.)
+  4. Double-click RoeGuPOS.WinForms (or the desktop shortcut) and log in below.
+  (Keep the extracted folder where it is. The shortcut only points to it.)
+
+  If your SQL Server has a different name than .\SQLEXPRESS, open
+  RoeGuPOS.WinForms.exe.config in Notepad, change Data Source=.\SQLEXPRESS, and save.
 
 LOGINS
   Admin    admin     Admin@123    everything, including Users
   Manager  manager   Manager@123  inventory, analytics, customers, sales
   Cashier  cashier   Cashier@123  sales and customers only
+
+SOURCE CODE (RoeGuPOS.zip)
+  Unzip it and open the .sln file in Visual Studio. Projects:
+    RoeGuPOS.Domain     data models
+    RoeGuPOS.Data       database access
+    RoeGuPOS.Services   business rules and permissions
+    RoeGuPOS.WinForms   screens (set as the startup project)
+  Build with Build > Rebuild Solution, then press F5.
 
 QUICK TOUR
   Dashboard  today's sales, orders, low stock, recent orders
